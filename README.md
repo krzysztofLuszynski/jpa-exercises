@@ -1,2 +1,2 @@
 # jpa-exercises
-Exercises for jpa
+Exercises for JPA.
