@@ -8,6 +8,11 @@ group = 'kluszynski.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -15,6 +20,9 @@ repositories {
 
 ext {
 	springBootVersion = '2.5.6'
+	lombokVersion = '1.18.22'
+	assertjVersion = '3.6.1'
+	h2databaseVersion = '1.4.200'
 }
 
 dependencies {
@@ -23,7 +31,12 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-	runtimeOnly "com.h2database:h2"
+	runtimeOnly "com.h2database:h2:${h2databaseVersion}"
+
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	testImplementation "org.assertj:assertj-core:${assertjVersion}"
 }
 
 test {
