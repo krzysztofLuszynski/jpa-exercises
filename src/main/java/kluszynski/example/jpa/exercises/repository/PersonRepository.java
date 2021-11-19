@@ -4,8 +4,13 @@ import kluszynski.example.jpa.exercises.domain.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
+@Transactional
 public class PersonRepository {
     private final EntityManager entityManager;
 
@@ -18,7 +23,18 @@ public class PersonRepository {
     }
 
     public Person getById(Long id) {
-        return entityManager.find(Person.class, id);
+        Person person = entityManager.find(Person.class, id);
+
+        if (person == null) {
+            throw new EntityNotFoundException();
+        }
+
+        return person;
+    }
+
+    public List<Person> getAll() {
+        TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p ORDER by p.id", Person.class);
+        return query.getResultList();
     }
 
     public Person update(Person person) {
