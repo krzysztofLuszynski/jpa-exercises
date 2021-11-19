@@ -13,7 +13,15 @@ public class PersonRepository {
         this.entityManager = entityManager;
     }
 
+    public void save(Person person) {
+        entityManager.persist(person);
+    }
+
     public Person getById(Long id) {
         return entityManager.find(Person.class, id);
+    }
+
+    public Person update(Person person) {
+        return entityManager.merge(person);
     }
 }
