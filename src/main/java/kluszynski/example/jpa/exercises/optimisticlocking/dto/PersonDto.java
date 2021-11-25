@@ -1,6 +1,6 @@
-package kluszynski.example.jpa.exercises.dto;
+package kluszynski.example.jpa.exercises.optimisticlocking.dto;
 
-import kluszynski.example.jpa.exercises.domain.Person;
+import kluszynski.example.jpa.exercises.optimisticlocking.domain.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

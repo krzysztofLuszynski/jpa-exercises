@@ -1,12 +1,13 @@
-package kluszynski.example.jpa.exercises.controller;
+package kluszynski.example.jpa.exercises.optimisticlocking.controller;
 
-import kluszynski.example.jpa.exercises.dto.PersonDto;
-import kluszynski.example.jpa.exercises.domain.Person;
-import kluszynski.example.jpa.exercises.repository.PersonRepository;
+import kluszynski.example.jpa.exercises.optimisticlocking.dto.PersonDto;
+import kluszynski.example.jpa.exercises.optimisticlocking.domain.Person;
+import kluszynski.example.jpa.exercises.optimisticlocking.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,5 +68,10 @@ public class PersonRestController {
     @ExceptionHandler({EntityNotFoundException.class, EmptyResultDataAccessException.class})
     void handleBadRequests(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
+    }
+
+    @ExceptionHandler(OptimisticLockingFailureException.class)
+    void handleConcurrentRequests(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 }

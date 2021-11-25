@@ -1,8 +1,8 @@
-package kluszynski.example.jpa.exercises.controller;
+package kluszynski.example.jpa.exercises.optimisticlocking.controller;
 
-import kluszynski.example.jpa.exercises.TestDataContants;
-import kluszynski.example.jpa.exercises.domain.Person;
-import kluszynski.example.jpa.exercises.dto.PersonDto;
+import kluszynski.example.jpa.exercises.optimisticlocking.TestDataContants;
+import kluszynski.example.jpa.exercises.optimisticlocking.domain.Person;
+import kluszynski.example.jpa.exercises.optimisticlocking.dto.PersonDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
-import static kluszynski.example.jpa.exercises.TestDataContants.*;
+import static kluszynski.example.jpa.exercises.optimisticlocking.TestDataContants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

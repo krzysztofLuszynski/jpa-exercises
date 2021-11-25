@@ -1,6 +1,6 @@
-package kluszynski.example.jpa.exercises.repository;
+package kluszynski.example.jpa.exercises.optimisticlocking.repository;
 
-import kluszynski.example.jpa.exercises.domain.Person;
+import kluszynski.example.jpa.exercises.optimisticlocking.domain.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

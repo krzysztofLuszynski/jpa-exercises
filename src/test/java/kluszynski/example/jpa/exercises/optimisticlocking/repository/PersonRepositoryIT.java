@@ -1,7 +1,7 @@
-package kluszynski.example.jpa.exercises.repository;
+package kluszynski.example.jpa.exercises.optimisticlocking.repository;
 
-import kluszynski.example.jpa.exercises.TestDataContants;
-import kluszynski.example.jpa.exercises.domain.Person;
+import kluszynski.example.jpa.exercises.optimisticlocking.TestDataContants;
+import kluszynski.example.jpa.exercises.optimisticlocking.domain.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
-import static kluszynski.example.jpa.exercises.TestDataContants.*;
+import static kluszynski.example.jpa.exercises.optimisticlocking.TestDataContants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -128,14 +128,13 @@ public class PersonRepositoryIT {
     @Test
     @Sql({CLEAN_DATABASE_SQL_PATH, JACK_WHITE_SQL_PATH})
     void updateWithPersonPresentInDatabase() {
-        Person person = TestDataContants.createJackWhite();
+        Person person = personRepository.getById(JACK_WHITE.getId());
+
         person.setName("Jackie");
         person.setSurname("Whitee");
         person.setBirthDate(LocalDate.parse("2022-01-01"));
-        person.setId(1000L);
 
-        personRepository.update(person);
-        assertThat(person.getId()).isNotNull();
+        person = personRepository.update(person);
 
         Person personFromDatabase = personRepository.getById(person.getId());
         assertThat(personFromDatabase.getId()).isEqualTo(person.getId());

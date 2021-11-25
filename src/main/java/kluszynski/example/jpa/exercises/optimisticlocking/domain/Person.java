@@ -1,10 +1,11 @@
-package kluszynski.example.jpa.exercises.domain;
+package kluszynski.example.jpa.exercises.optimisticlocking.domain;
 
 import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +20,9 @@ public class Person {
     private String surname;
 
     private LocalDate birthDate;
+
+    @Version
+    private Integer version;
 
     Person() {
     }
