@@ -33,8 +33,9 @@ dependencies {
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 	runtimeOnly "com.h2database:h2:${h2databaseVersion}"
 
-	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	implementation "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
 	testImplementation "org.assertj:assertj-core:${assertjVersion}"
 }

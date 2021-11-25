@@ -60,14 +60,6 @@ public class PersonRepositoryIT {
     }
 
     @Test
-    @Sql(CLEAN_DATABASE_SQL_PATH)
-    void getAllEmptyDatabase() {
-        List<Person> persons = personRepository.getAll();
-
-        assertThat(persons).isEmpty();
-    }
-
-    @Test
     @Sql({CLEAN_DATABASE_SQL_PATH, JACK_WHITE_SQL_PATH})
     void getByIdFromNonEmptyRepositoryValidId() {
         Person person = personRepository.getById(1000L);
@@ -77,6 +69,14 @@ public class PersonRepositoryIT {
                 .hasFieldOrPropertyWithValue("name", JACK_WHITE.getName())
                 .hasFieldOrPropertyWithValue("surname", JACK_WHITE.getSurname())
                 .hasFieldOrPropertyWithValue("birthDate", JACK_WHITE.getBirthDate());
+    }
+
+    @Test
+    @Sql(CLEAN_DATABASE_SQL_PATH)
+    void getAllEmptyDatabase() {
+        List<Person> persons = personRepository.getAll();
+
+        assertThat(persons).isEmpty();
     }
 
     @Test
